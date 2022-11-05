@@ -7,9 +7,10 @@ import java.util.Arrays;
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class SelectionSort {
+public class SelectionSort implements Sorter{
 
-    public static int[] sort(int[] sourceArray) {
+    @Override
+    public int[] sort(int[] sourceArray) {
         int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
 
         // 总共要经过 N-1 轮比较

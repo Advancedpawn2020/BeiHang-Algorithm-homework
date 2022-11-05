@@ -8,9 +8,10 @@ import java.util.Arrays;
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class RadixSort {
+public class RadixSort implements Sorter{
 
-    public static int[] sort(int[] sourceArray) {
+    @Override
+    public int[] sort(int[] sourceArray) {
         int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
 
         int maxDigit = getMaxDigit(arr);
@@ -20,12 +21,12 @@ public class RadixSort {
     /**
      * 获取最高位数
      */
-    private static int getMaxDigit(int[] arr) {
+    private int getMaxDigit(int[] arr) {
         int maxValue = getMaxValue(arr);
         return getNumLenght(maxValue);
     }
 
-    private static int getMaxValue(int[] arr) {
+    private int getMaxValue(int[] arr) {
         int maxValue = arr[0];
         for (int value : arr) {
             if (maxValue < value) {
@@ -35,7 +36,7 @@ public class RadixSort {
         return maxValue;
     }
 
-    protected static int getNumLenght(long num) {
+    protected int getNumLenght(long num) {
         if (num == 0) {
             return 1;
         }
@@ -46,12 +47,11 @@ public class RadixSort {
         return lenght;
     }
 
-    private static int[] radixSort(int[] arr, int maxDigit) {
+    private int[] radixSort(int[] arr, int maxDigit) {
         int mod = 10;
         int dev = 1;
 
         for (int i = 0; i < maxDigit; i++, dev *= 10, mod *= 10) {
-            // 考虑负数的情况，这里扩展一倍队列数，其中 [0-9]对应负数，[10-19]对应正数 (bucket + 10)
             int[][] counter = new int[mod * 2][0];
 
             for (int k : arr) {
@@ -70,7 +70,7 @@ public class RadixSort {
         return arr;
     }
 
-    private static int[] arrayAppend(int[] arr, int value) {
+    private int[] arrayAppend(int[] arr, int value) {
         arr = Arrays.copyOf(arr, arr.length + 1);
         arr[arr.length - 1] = value;
         return arr;

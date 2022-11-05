@@ -8,9 +8,10 @@ import java.util.Arrays;
  * @date 2022/11/1
  */
 
-public class MergeSort {
+public class MergeSort implements Sorter{
 
-    public static int[] sort(int[] sourceArray) {
+    @Override
+    public int[] sort(int[] sourceArray) {
         // 对 arr 进行拷贝，不改变参数内容
         int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
 
@@ -25,7 +26,7 @@ public class MergeSort {
         return merge(sort(left), sort(right));
     }
 
-    protected static int[] merge(int[] left, int[] right) {
+    protected int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
         int i = 0;
         while (left.length > 0 && right.length > 0) {

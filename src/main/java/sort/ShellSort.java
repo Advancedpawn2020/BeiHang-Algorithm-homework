@@ -6,9 +6,10 @@ import java.util.Arrays;
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class ShellSort {
+public class ShellSort implements Sorter{
 
-    public static int[] sort(int[] sourceArray) {
+    @Override
+    public int[] sort(int[] sourceArray) {
         int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
 
         int gap = 1;
