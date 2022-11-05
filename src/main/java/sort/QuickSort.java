@@ -1,20 +1,16 @@
 package sort;
 
-import java.util.Arrays;
-
 /**
  * 快排
+ *
  * @author zhangrikang
  * @date 2022/11/1
  */
 
-public class QuickSort implements Sorter{
+public class QuickSort implements Sorter {
 
     @Override
-    public int[] sort(int[] sourceArray) {
-        // 对 arr 进行拷贝，不改变参数内容
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+    public int[] sort(int[] arr) {
         return quickSort(arr, 0, arr.length - 1);
     }
 

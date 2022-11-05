@@ -4,17 +4,15 @@ import java.util.Arrays;
 
 /**
  * 归并排序
+ *
  * @author zhangrikang
  * @date 2022/11/1
  */
 
-public class MergeSort implements Sorter{
+public class MergeSort implements Sorter {
 
     @Override
-    public int[] sort(int[] sourceArray) {
-        // 对 arr 进行拷贝，不改变参数内容
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+    public int[] sort(int[] arr) {
         if (arr.length < 2) {
             return arr;
         }

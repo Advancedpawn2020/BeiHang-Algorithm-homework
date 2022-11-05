@@ -8,12 +8,10 @@ import java.util.Arrays;
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class RadixSort implements Sorter{
+public class RadixSort implements Sorter {
 
     @Override
-    public int[] sort(int[] sourceArray) {
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+    public int[] sort(int[] arr) {
         int maxDigit = getMaxDigit(arr);
         return radixSort(arr, maxDigit);
     }

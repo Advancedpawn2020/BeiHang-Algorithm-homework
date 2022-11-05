@@ -1,18 +1,15 @@
 package sort;
 
-import java.util.Arrays;
-
 /**
  * 选择排序
+ *
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class SelectionSort implements Sorter{
+public class SelectionSort implements Sorter {
 
     @Override
-    public int[] sort(int[] sourceArray) {
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+    public int[] sort(int[] arr) {
         // 总共要经过 N-1 轮比较
         for (int i = 0; i < arr.length - 1; i++) {
             int min = i;

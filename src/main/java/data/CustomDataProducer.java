@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * 通用数据集生成
+ *
  * @author zhangrikang
  * @date 2022/11/1
  */

@@ -1,17 +1,13 @@
 package sort;
 
-import java.util.Arrays;
-
 /**
  * @author zhangrikang
  * @date 2022/11/1
  */
-public class ShellSort implements Sorter{
+public class ShellSort implements Sorter {
 
     @Override
-    public int[] sort(int[] sourceArray) {
-        int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
-
+    public int[] sort(int[] arr) {
         int gap = 1;
         while (gap < arr.length / 3) {
             gap = gap * 3 + 1;
