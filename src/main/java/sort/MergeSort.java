@@ -24,7 +24,7 @@ public class MergeSort implements Sorter {
         return merge(sort(left), sort(right));
     }
 
-    protected int[] merge(int[] left, int[] right) {
+    public int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
         int i = 0;
         while (left.length > 0 && right.length > 0) {

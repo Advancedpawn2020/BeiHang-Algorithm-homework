@@ -4,6 +4,7 @@ import data.CustomDataProducer;
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 import org.springframework.util.StopWatch;
 import sort.*;
+import task.MultiThreadSortTask;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -44,20 +45,40 @@ public class Homework3 {
             new LinkedBlockingQueue<>(1024),
             new CustomizableThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
+    /**
+     * 多线程个数
+     */
+    static int unHandleArrLength = 1000000;
+
 
     public static void main(String[] args) {
         // 保证所有算法只针对同一个未排序集合进行排序
-        unHandleArr = CustomDataProducer.generate(1, arrayBound, 1000000);
-        System.out.printf("unHandleArr:%s%n", Arrays.toString(unHandleArr));
+//        unHandleArr = CustomDataProducer.generate(1, arrayBound, 1000000);
+//        System.out.printf("unHandleArr:%s%n", Arrays.toString(unHandleArr));
         // 分发桶
-        distributeBucket();
+//        distributeBucket();
 
-        multithreadingAnalysis(SelectionSort.class.getSimpleName(), new SelectionSort()::sort);
-        multithreadingAnalysis(MergeSort.class.getSimpleName(), new MergeSort()::sort);
-        multithreadingAnalysis(ShellSort.class.getSimpleName(), new ShellSort()::sort);
-        multithreadingAnalysis(QuickSort.class.getSimpleName(), new QuickSort()::sort);
-        multithreadingAnalysis(RadixSort.class.getSimpleName(), new RadixSort()::sort);
-        pool.shutdown();
+//        multithreadingAnalysis(SelectionSort.class.getSimpleName(), new SelectionSort()::sort);
+//        multithreadingAnalysis(MergeSort.class.getSimpleName(), new MergeSort()::sort);
+//        multithreadingAnalysis(ShellSort.class.getSimpleName(), new ShellSort()::sort);
+//        multithreadingAnalysis(QuickSort.class.getSimpleName(), new QuickSort()::sort);
+//        multithreadingAnalysis(RadixSort.class.getSimpleName(), new RadixSort()::sort);
+//        pool.shutdown();
+
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        StopWatch watch = new StopWatch();
+        watch.start();
+        int[] arrayToSort = CustomDataProducer.generate(1, unHandleArrLength, unHandleArrLength);
+        MultiThreadSortTask multiThreadSort = new MultiThreadSortTask(arrayToSort);
+        multiThreadSort.setSorter(new MergeSort());
+//        multiThreadSort.setSorter(new QuickSort());
+//        multiThreadSort.setSorter(new RadixSort());
+//        multiThreadSort.setSorter(new SelectionSort());
+//        multiThreadSort.setSorter(new ShellSort());
+        int[] result = forkJoinPool.invoke(multiThreadSort);
+        watch.stop();
+        System.out.printf("Total time：%dms ", watch.getTotalTimeMillis());
     }
 
     private static void multithreadingAnalysis(String sortName, Function<int[], int[]> sorter) {
