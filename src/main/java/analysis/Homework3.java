@@ -46,7 +46,7 @@ public class Homework3 {
             new CustomizableThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
     /**
-     * 多线程个数
+     *  待排序数
      */
     static int unHandleArrLength = 1000000;
 
@@ -64,7 +64,6 @@ public class Homework3 {
 //        multithreadingAnalysis(QuickSort.class.getSimpleName(), new QuickSort()::sort);
 //        multithreadingAnalysis(RadixSort.class.getSimpleName(), new RadixSort()::sort);
 //        pool.shutdown();
-
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         StopWatch watch = new StopWatch();

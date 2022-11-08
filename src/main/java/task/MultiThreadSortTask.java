@@ -43,9 +43,8 @@ public class MultiThreadSortTask extends RecursiveTask<int []>{
             MultiThreadSortTask leftTask = new MultiThreadSortTask(Arrays.copyOfRange(unHandleArr, 0, mid));
             MultiThreadSortTask rightTask = new MultiThreadSortTask(Arrays.copyOfRange(unHandleArr, mid, unHandleArr.length));
 
-            //执行子任务
-            leftTask.fork();
-            rightTask.fork();
+            //并行执行子任务
+            invokeAll(leftTask, rightTask);
 
             //等待子任务执行完，合并得到结果
             int[] leftResult = leftTask.join();
