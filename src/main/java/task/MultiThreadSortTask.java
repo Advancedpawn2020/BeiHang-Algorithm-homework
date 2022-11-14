@@ -1,14 +1,17 @@
 package task;
 
-import sort.*;
+import sort.MergeSort;
+import sort.Sorter;
+
 import java.util.Arrays;
-import java.util.concurrent.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * Created by shihaichao
  * Date: 2022/11/7
  */
-public class MultiThreadSortTask extends RecursiveTask<int []> {
+public class MultiThreadSortTask extends RecursiveTask<int[]> {
 
     /**
      * 未处理的数组
@@ -18,7 +21,7 @@ public class MultiThreadSortTask extends RecursiveTask<int []> {
     static Sorter sorter;
 
     public void setSorter(Sorter sorter) {
-        this.sorter = sorter;
+        MultiThreadSortTask.sorter = sorter;
     }
 
     /**

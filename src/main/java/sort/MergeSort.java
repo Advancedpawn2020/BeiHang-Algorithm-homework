@@ -25,7 +25,7 @@ public class MergeSort implements Sorter {
     }
 
     public int[] merge(int[] left, int[] right) {
-        int destInts[] = new int[left.length + right.length];
+        int[] destInts = new int[left.length + right.length];
         int array1Len = left.length;
         int array2Len = right.length;
         int destLen = destInts.length;
