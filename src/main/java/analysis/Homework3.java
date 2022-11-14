@@ -50,7 +50,6 @@ public class Homework3 {
      */
     static int unHandleArrLength = 1000000;
 
-
     public static void main(String[] args) {
         // 保证所有算法只针对同一个未排序集合进行排序
 //        unHandleArr = CustomDataProducer.generate(1, arrayBound, 1000000);

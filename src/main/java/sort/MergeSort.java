@@ -25,28 +25,27 @@ public class MergeSort implements Sorter {
     }
 
     public int[] merge(int[] left, int[] right) {
-        int[] result = new int[left.length + right.length];
-        int i = 0;
-        while (left.length > 0 && right.length > 0) {
-            if (left[0] <= right[0]) {
-                result[i++] = left[0];
-                left = Arrays.copyOfRange(left, 1, left.length);
-            } else {
-                result[i++] = right[0];
-                right = Arrays.copyOfRange(right, 1, right.length);
+        int destInts[] = new int[left.length + right.length];
+        int array1Len = left.length;
+        int array2Len = right.length;
+        int destLen = destInts.length;
+
+        // 只需要以新的集合destInts的长度为标准，遍历一次即可
+        for (int index = 0, array1Index = 0, array2Index = 0; index < destLen; index++) {
+            int value1 = array1Index >= array1Len ? Integer.MAX_VALUE : left[array1Index];
+            int value2 = array2Index >= array2Len ? Integer.MAX_VALUE : right[array2Index];
+            // 如果条件成立，说明应该取数组array1中的值
+            if (value1 < value2) {
+                array1Index++;
+                destInts[index] = value1;
+            }
+            // 否则取数组array2中的值
+            else {
+                array2Index++;
+                destInts[index] = value2;
             }
         }
 
-        while (left.length > 0) {
-            result[i++] = left[0];
-            left = Arrays.copyOfRange(left, 1, left.length);
-        }
-
-        while (right.length > 0) {
-            result[i++] = right[0];
-            right = Arrays.copyOfRange(right, 1, right.length);
-        }
-
-        return result;
+        return destInts;
     }
 }
