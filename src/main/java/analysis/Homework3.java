@@ -66,8 +66,6 @@ public class Homework3 {
 //        pool.shutdown();
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        StopWatch watch = new StopWatch();
-        watch.start();
         int[] arrayToSort = CustomDataProducer.generate(1, unHandleArrLength, unHandleArrLength);
         MultiThreadSortTask multiThreadSort = new MultiThreadSortTask(arrayToSort);
         multiThreadSort.setSorter(new MergeSort());
@@ -75,6 +73,8 @@ public class Homework3 {
 //        multiThreadSort.setSorter(new RadixSort());
 //        multiThreadSort.setSorter(new SelectionSort());
 //        multiThreadSort.setSorter(new ShellSort());
+        StopWatch watch = new StopWatch();
+        watch.start();
         int[] result = forkJoinPool.invoke(multiThreadSort);
         watch.stop();
         System.out.printf("Total time：%dms ", watch.getTotalTimeMillis());
