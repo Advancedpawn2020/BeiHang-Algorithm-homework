@@ -30,7 +30,7 @@ finish, 0.1875ms
  */
 int main() {
     int len = 100;
-    int bound = 100;
+    int bound = 1000;
     string ss;
 
     string unHandleArr[100] = {};
